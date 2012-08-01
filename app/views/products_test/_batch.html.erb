@@ -1,0 +1,3 @@
+<% options = []
+  options = options_from_collection_for_select(@stock, "id", "batch_no") if @stock.present? %>
+<%= select_tag "Select batch", options %>

@@ -1,0 +1,24 @@
+<div id="product">
+<%= select_tag "product_select", options_from_collection_for_select(@products, "id", "name"), :include_blank => true %>
+</div>
+<div id="batch">
+ <%= render :partial => "batch" %>
+</div>
+
+<script type="text/javascript">
+  jQuery(document).ready(function(){
+    $("#product_select").bind('change',function() {
+      var product = $("#product_select :selected").val()
+      //alert(product); //to test
+      var data = {
+        product_id: $("#product_select :selected").val()      
+      }
+      jQuery.ajax({
+        url: "products_test/get_batch",
+        type: 'GET',
+        dataType: 'script',
+        data: data
+      });
+    })
+  });
+</script>
